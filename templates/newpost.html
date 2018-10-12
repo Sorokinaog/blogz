@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Add a Blog Entry</h1>
+<br><br>
+
+<form action="/newpost", method="POST">
+    <label for="title">Title for your new post:</label> 
+    <div>
+        <input type="text" name = title>
+    </div>
+    {% if error == 'empty entries' or error == 'empty title' %}
+        <span class='error'>Please, fill out the title</span>
+    {% endif %}
+    <br>
+    <br>
+    <label for="body">Your new post:</label>
+    <div>
+        <textarea name = body rows="20" cols="30"></textarea>
+    </div>
+    {% if error == 'empty entries' or error == 'empty body' %}
+        <span class='error'>Please, fill out the body</span>
+    {% endif %}
+    <br>
+    <br>
+    <br>
+    <input type="submit" value = "Add Entry">
+</form>
+
+{% endblock %}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Builg-a-blog</title>
+            <style>
+                .error {
+                    color: red;
+                }
+                .link {
+                    display: inline-block;
+                }
+               
+            </style>
+    </head>
+    <body>
+        <div class="link">
+            <a href="/blog">Main Blog Page</a>
+        </div>
+        <div class="link">
+            <a href="/newpost">Add a Blog Entry</a>
+        </div>
+
+        {% block content %}
+        {% endblock %}
+    
+    </body>
+</html>
