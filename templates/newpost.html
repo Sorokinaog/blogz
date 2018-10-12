@@ -7,7 +7,7 @@
 <form action="/newpost", method="POST">
     <label for="title">Title for your new post:</label> 
     <div>
-        <input type="text" name = title>
+        <input type="text" name = title value = '{{title}}' >
     </div>
     {% if error == 'empty entries' or error == 'empty title' %}
         <span class='error'>Please, fill out the title</span>
@@ -16,7 +16,7 @@
     <br>
     <label for="body">Your new post:</label>
     <div>
-        <textarea name = body rows="20" cols="30"></textarea>
+        <textarea name = body rows="20" cols="30">{{body}}</textarea>
     </div>
     {% if error == 'empty entries' or error == 'empty body' %}
         <span class='error'>Please, fill out the body</span>

@@ -40,13 +40,13 @@ def newpost():
         
         if title =='' and body =='':
             error = 'empty entries'
-            return redirect('/newpost?error='+error)
+            return render_template('newpost.html', error=error, title=title, body=body)
         if title =='':
             error = 'empty title'
-            return redirect('/newpost?error='+error)
+            return render_template('newpost.html', error=error, title=title, body=body)
         if body == '':
             error = 'empty body'
-            return redirect('/newpost?error='+error)
+            return render_template('newpost.html', error=error, title=title, body=body)
 
         db.session.add(new_blog)
         db.session.commit()
