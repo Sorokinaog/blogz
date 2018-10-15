@@ -1,5 +1,7 @@
 from flask import Flask, request, redirect, render_template, session, flash
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import desc
+
 
 app = Flask(__name__)
 app.config['DEBUG']=True
@@ -28,8 +30,9 @@ def blog():
         blog = Blog.query.filter_by(id = id).first()
         return render_template('singlepost.html', blog=blog)
     else:    
-        blogs = Blog.query.all()
-    return render_template('blog.html', blogs=blogs)
+        blogs = Blog.query.order_by(desc(Blog.id)).all()
+        print(blogs)
+        return render_template('blog.html', blogs=blogs)
 
 @app.route('/newpost', methods =['POST','GET'])
 def newpost():
