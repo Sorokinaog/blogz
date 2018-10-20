@@ -53,13 +53,12 @@ def login():
         user = User.query.filter_by(username=username).first()
         if user and user.password == password:
             session['username'] = username
-            flash("Logged in")
-            return redirect('/newpost',)
+            return redirect('/newpost')
         if user and user.password != password:
-            flash ("Incorrect Password!")  
+            flash ("Incorrect Password!","error")  
             return redirect('/login') 
         if not user:
-            flash ("The Username does not exist")
+            flash ("The Username does not exist", "error")
             return redirect('/login')
     return render_template('login.html') 
 
@@ -73,20 +72,19 @@ def signup():
         user = User.query.filter_by(username=username).first()
         new_user = User(username, password)
         if username =="" or password =="" or verify_password =="":
-            flash("One or more fields are empty")
+            flash("One or more fields are empty", "error")
             return render_template('signup.html')
         if user:
-            flash("That username already exists")
+            flash("That username already exists", "error")
             return render_template('signup.html')
         if len(username)<3 or len(password)<3:
-            flash("Username or password less than 3 characters long")
+            flash("Username or password less than 3 characters long", "error")
             return render_template('signup.html')
         if password != verify_password:
-            flash("The passwords do not match")
+            flash("The passwords do not match", "error")
             return render_template('signup.html')
         db.session.add(new_user)
         db.session.commit()
-        #new_user_id =new_user.id
         session['username'] = username
         return redirect('/newpost')      
     return render_template('signup.html') 
@@ -95,16 +93,18 @@ def signup():
 @app.route('/logout')
 def logout():
     del session['username']
-    flash("You logged out")
     return redirect('/blog')
 
 
 @app.route('/blog', methods =['GET'])
 def blog():
-    #owner = User.query.filter_by(username=session['username']).first()
-    id = request.args.get('id')
-    if id:
-        blog = Blog.query.filter_by(id = id).first()
+    userId = request.args.get('user')
+    blogId = request.args.get('id')
+    if userId:
+        blogs = Blog.query.filter_by(owner_id = userId).order_by(desc(Blog.id)).all()
+        return render_template('blog.html', blogs=blogs)
+    if blogId:
+        blog = Blog.query.filter_by(id = blogId).first()
         return render_template('singlepost.html', blog=blog)
     else:    
         blogs = Blog.query.order_by(desc(Blog.id)).all()

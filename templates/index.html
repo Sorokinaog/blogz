@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Blog Users</h1>
+    <h1 class = 'header'>Blog Users</h1>
     <br><br>
     
     {% if users|length == 0 %}
@@ -9,7 +9,7 @@
     {% else %}
         {% for user in users %} 
             <ul>
-                <li><h3><a href="/user?id={{user.id}}">{{user.username}}</a></h3></li>
+                <li><h3><a href="blog?user={{user.id}}">{{user.username}}</a></h3></li>
             </ul>  
         {% endfor %}
     {% endif %}

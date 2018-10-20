@@ -9,13 +9,39 @@
                 .link {
                     display: inline-block;
                 }
+                .header  {
+                    text-align: center;
+                }
+                .login_form {
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+                .signup_link {
+                    text-align: center;
+                }
+                .login_logout {
+                    text-align: right;
+                }
+                .written_by {
+                    font-style: italic;
+                    font-size: small;
+                }
+                .container {
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+                .flash {
+                    margin-right: 0;
+                    margin-left: auto;
+                }
+            
                
             </style>
     </head>
     <body>
         <nav class="link">
             <a href="/">Home</a> |
-            <a href="/allposts">All posts</a> |
+            <a href="/blog">All posts</a> |
             <a href="/newpost">New post</a> 
         </nav>
         <div class="login_logout">
@@ -24,12 +50,12 @@
         </div>
         
         {% with messages = get_flashed_messages(with_categories=True) %}
-            <ul>
+         <!--<ul>-->
                 {% for category,message in messages %}
-                    <li class="{{category}}">{{message}}</li>
+                    <p class="{{category}}">{{message}}</p>
                 {% endfor %}    
-            </ul>
-        {% endwith %}  
+            <!--</ul>-->
+        {% endwith %} 
 
         {% block content %}
         {% endblock %}

@@ -3,9 +3,14 @@
 {% block content %}
 
     
-    <h1>{{blog.title}}</h1>
-    <br><br>
-    <p>{{blog.body}}</p>
+    <h1 class='header'>{{blog.title}}</h1>
+    <br>
+    <div>
+        <p>{{blog.body}}</p>
+        <br>
+        <p class='written_by'>written by <a href="blog?user={{blog.owner.id}}">{{blog.owner.username}}</a></p>
+    </div> 
+    <hr>
   
 
 {% endblock %}

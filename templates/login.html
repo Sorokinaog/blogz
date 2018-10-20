@@ -2,10 +2,11 @@
 
 {% block content %}
 
-<h1>Login</h1>
+<h1 class = 'header'>Login</h1>
 
-<form action="/login" method="POST">
-    <table>
+<form  action="/login" method="POST">
+    <div >
+    <table class="login_form">
         <tr>
             <td><label for="username">Username</label></td>
             <td><input type="text" name="username" value={{username}}></td>
@@ -34,7 +35,8 @@
             
         
     </table>
-    <p>Don't have an account? <a href="/signup">Create Account</a></p>
+    <p class='signup_link'>Don't have an account? <a href="/signup">Create Account</a></p>
+    </div>
 </form>
 
 
